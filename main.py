@@ -11,6 +11,9 @@ def main():
   # Print the original report
   print_report(num_letters, num_words, book_path)
 
+  # Additional insights using Pandas
+  analyze_text(text)
+
 def print_report(num_letters, num_words, path):
   print(f'--- Begin report for {path} ---')
   print(f'The total number of words in the text is {num_words}\n')
@@ -43,6 +46,18 @@ def count_letters(file_contents):
   # return the sorted dictionary by value in descending order
   sorted_count = dict(sorted(count.items(), key=lambda x: x[1], reverse=True))
   return sorted_count
+
+def analyze_text(text):
+  # Tokenize the text
+  tokens = text.split()
+
+  # Create a DataFrame from the word frequency count
+  word_counts = pd.Series(tokens).value_counts().reset_index()
+  word_counts.columns = ['Word', 'Frequency']
+
+  # Print the top 10 most frequent words
+  print('\n--- Top 10 most frequent words ---')
+  print(word_counts.head(10))
 
 
 main()
