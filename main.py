@@ -67,8 +67,14 @@ def analyze_text(text):
   plt.ylabel('Frequency')
   plt.xticks(rotation=45, ha='right')
   plt.tight_layout()
-  plt.show()
-
+  plt.show(block=False)
+  
+  # Prompt the user to save the plot as a PNG file
+  save_plot = input('Would you like to save the plot? (y/n): ')
+  if save_plot.lower() == 'y':
+    file_name = input('Enter the file name: ')
+    plt.savefig(f'{file_name}.png')
+    print(f'Plot saved as {file_name}.png')
 
 main()
 
