@@ -1,6 +1,7 @@
-import pandas as pd
-import matplotlib.pyplot as plt
 import copy
+import matplotlib.pyplot as plt
+import pandas as pd
+import os
 from collections import Counter
 
 def main():
@@ -80,8 +81,14 @@ def analyze_text(text):
   save_plot = input('Would you like to save the plot? (y/n): ')
   if save_plot.lower() == 'y':
     file_name = input('Enter the file name: ')
-    plot.savefig(f'{file_name}.png')
-    print(f'Plot saved as {file_name}.png')
+
+    # Create the directory if it doesn't exist
+    if not os.path.exists('images/'):
+      os.makedirs('images/')
+
+    # Save the plot
+    plot.savefig(f'images/{file_name}.png')
+    print(f'Plot saved as images/{file_name}.png')
 
 main()
 
