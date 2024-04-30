@@ -59,6 +59,16 @@ def analyze_text(text):
   print('\n--- Top 10 most frequent words ---')
   print(word_counts.head(10))
 
+  # Plot the distribution of word frequencies
+  plt.figure(figsize=(10, 6))
+  plt.bar(word_counts['Word'][:30], word_counts['Frequency'][:30], color='skyblue')
+  plt.title('Top 30 Most Common Words')
+  plt.xlabel('Word')
+  plt.ylabel('Frequency')
+  plt.xticks(rotation=45, ha='right')
+  plt.tight_layout()
+  plt.show()
+
 
 main()
 
