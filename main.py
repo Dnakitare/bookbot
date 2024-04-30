@@ -1,3 +1,5 @@
+import pandas as pd
+import matplotlib.pyplot as plt
 from collections import Counter
 
 def main():
@@ -5,6 +7,7 @@ def main():
   text = get_book_text(book_path)
   num_words = word_count(text)
   num_letters = count_letters(text)
+
   print_report(num_letters, num_words, book_path)
 
 
