@@ -8,15 +8,22 @@ def main():
   num_words = word_count(text)
   num_letters = count_letters(text)
 
+  # Print the original report
   print_report(num_letters, num_words, book_path)
-
 
 def print_report(num_letters, num_words, path):
   print(f'--- Begin report for {path} ---')
   print(f'The total number of words in the text is {num_words}\n')
-  for letter, count in num_letters.items():
-    print(f'The letter "{letter}" character was found {count} times')
-  print('--- End report ---')
+  
+   # Create a DataFrame from the letter count dictionary
+  letter_df = pd.DataFrame.from_dict(num_letters, orient='index', columns=['Count'])
+  letter_df.index.name = 'Letter'
+  letter_df.reset_index(inplace=True)
+
+  # Print the DataFrame
+  print(letter_df)
+
+  print('\n--- End report ---')
 
 def get_book_text(path):
   with open(path) as f:
