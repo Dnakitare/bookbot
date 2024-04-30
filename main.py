@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import copy
 from collections import Counter
 
 def main():
@@ -67,13 +68,19 @@ def analyze_text(text):
   plt.ylabel('Frequency')
   plt.xticks(rotation=45, ha='right')
   plt.tight_layout()
+
+  # copy the plot so that we can save it later even if the plot is displayed and closed by the user
+  fig = plt.gcf() # get the current figure
+  plot = copy.deepcopy(fig)
+
+  # Display the original plot
   plt.show(block=False)
   
   # Prompt the user to save the plot as a PNG file
   save_plot = input('Would you like to save the plot? (y/n): ')
   if save_plot.lower() == 'y':
     file_name = input('Enter the file name: ')
-    plt.savefig(f'{file_name}.png')
+    plot.savefig(f'{file_name}.png')
     print(f'Plot saved as {file_name}.png')
 
 main()
